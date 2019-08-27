@@ -1,0 +1,45 @@
+/* table {
+  margin-top: 10px;
+  margin-bottom: 100px;
+} */
+
+.card {
+  text-align: center;
+  display: inline-block;
+  padding: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: -10px;
+  padding-right: -10px;
+  margin-bottom: 40px;
+  margin-left: 20px;
+  margin-right: 20px;
+  overflow-x: hidden;
+  width: 80%;
+}
+
+img {
+  height: 150px;
+  width: 150px;
+  margin: 0px;
+}
+
+.container {
+  margin-top: 70px;
+}
+
+/* img {
+  height: 250px;
+  width: 250px;
+} */
+
+.card-img-top {
+  display: block;
+  margin: auto auto;
+  height: 150px;
+  width: 150px;
+}
+
+/* body {
+  overflow-x: hidden;
+} */
