@@ -73,7 +73,8 @@ class Admin extends Component {
     }
   }
 
-  deleteProduct = async(id) => {
+  deleteProduct = async(title) => {
+
     if (!window.confirm('Are you sure you want to delete this product?')) {
       return;
     }
@@ -84,15 +85,18 @@ class Admin extends Component {
       "method": "DELETE",
       "headers": {
         "Content-Type": "application/json",
-        "product_id": id
+        "title": title
       }
     });
 
     let data = await response.json();
 
+    console.log(data);
+
     if (data.success) {
       let products = this.state.products;
-      products = products.filter(product => product.product_id !== id);
+
+      products = products.filter(product => product.title !== title);
 
       this.setState({ products });
 

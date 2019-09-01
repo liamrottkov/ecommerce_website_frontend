@@ -11,17 +11,16 @@ function GetProductsTable(props) {
           <th>Title</th>
           <th>Price</th>
           <th>Description</th>
-          <th>Image</th>
           <th>Delete Product</th>
         </tr>
       </thead>
 
       <tbody>
         { props.products &&
-            props.products.map( product =>
+            props.products.map( (product, index) =>
               <DisplayItems
                 product={product}
-                key={product.product_id}
+                key={index}
                 deleteProduct={props.deleteProduct}
               />
             )

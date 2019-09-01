@@ -16,3 +16,7 @@ form > button {
   width: 100%;
   padding: 25px;
 }
+
+h1 {
+  margin-top: 10px;
+}

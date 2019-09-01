@@ -8,6 +8,7 @@ function ProductsCart(props) {
       <thead>
         <tr>
           <th>Title</th>
+        {/* <th>Quantity</th> */}
           <th>Price</th>
           <th>Remove Product</th>
         </tr>
@@ -16,9 +17,10 @@ function ProductsCart(props) {
       <tbody>
         {
           props.cart &&
-            props.cart.map( product =>
-              <tr key={product.product_id}>
+            props.cart.map( (product, index) =>
+              <tr key={index}>
                 <td>{product.title}</td>
+                {/* <td>Quantity</td> */}
                 <td>${product.price}</td>
                 <td>
                   <button
@@ -30,6 +32,13 @@ function ProductsCart(props) {
             )
         }
       </tbody>
+
+      <tfoot>
+        <tr>
+          <td colSpan="4"><b>Total: </b> ${props.total}</td>
+        </tr>
+      </tfoot>
+
     </table>
   );
 }

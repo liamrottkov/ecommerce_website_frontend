@@ -24,7 +24,7 @@ function ProductsTable(props) {
 
 export default ProductsTable;
 
-// code for table is below
+// code for table version is below
 
 // function ProductsTable(props) {
 //   return (

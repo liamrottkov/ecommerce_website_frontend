@@ -1,25 +1,11 @@
 import React, { Component } from 'react';
 import './index.css';
 import CheckoutTable from '../../components/checkoutTable';
+import { Elements } from 'react-stripe-elements';
+import CheckoutForm from '../../components/checkoutForm';
+
 
 class Checkout extends Component {
-
-  getCart = async(e) => {
-
-    let URL = 'http://localhost:5000/api/retrieve/cart';
-
-    let response = await fetch(URL);
-
-    let data = await response.json();
-
-    // console.log(data)
-    this.setState({ cart:data.cart })
-  }
-
-   // componentDidMount() {
-   //   this.getCart();
-   // }
-
 
   render() {
     return (
@@ -30,7 +16,13 @@ class Checkout extends Component {
             <CheckoutTable
               cart={this.props.cart}
               removeItem={this.props.removeItem}
+              total={this.props.total}
             />
+            <Elements>
+              <CheckoutForm
+              total={this.props.total}
+              />
+            </Elements>
           </div> {/*ends col */}
         </div> {/*ends row */}
       </div>

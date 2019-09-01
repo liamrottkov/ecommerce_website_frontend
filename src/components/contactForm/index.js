@@ -6,18 +6,18 @@ function ContactForm(props) {
   return (
     <form onSubmit={props.savePost}>
       <div className="form-group">
-        <label>Name</label>
-        <input type="text" className="form-control" name="name" />
+        {/* <label><b>Name:</b></label> */}
+        <input type="text" className="form-control" name="name" placeholder="Name"/>
       </div>
       <div className="form-group">
-        <label>Email</label>
-        <input type="text" className="form-control" name="email" />
+        {/* <label><b>Email:</b></label> */}
+        <input type="text" className="form-control" name="email" placeholder="Email"/>
       </div>
       <div className="form-group">
-        <label>Message</label>
-        <textarea type="text" className="form-control" name="message" />
+        {/* <label><b>Message:</b></label> */}
+        <textarea type="text" className="form-control" name="message" placeholder="Message"/>
       </div>
-      <button type="submit" className="btn btn-primary">Submit</button>
+      <button type="submit" className="btn btn-primary">Send Message</button>
     </form>
   )
 }

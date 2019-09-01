@@ -8,10 +8,9 @@ function DisplayItems(props) {
       <td>{props.product.title}</td>
       <td>{props.product.price}</td>
       <td>{props.product.description}</td>
-      <td>{props.product.image_url}</td>
       <td>
         <button
-          onClick={() => props.deleteProduct(props.product.product_id)}
+          onClick={() => props.deleteProduct(props.product.title)}
           className="btn btn-danger">X</button>
       </td>
     </tr>

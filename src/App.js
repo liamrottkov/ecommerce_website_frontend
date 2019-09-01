@@ -6,11 +6,13 @@ import Footer from './components/footer';
 import Admin from './views/admin';
 import Contact from './views/contact';
 import Commerce from './views/commerce';
-import Data from './views/data';
+// import Data from './views/data';
 import Login from './views/login';
 import Register from './views/register';
 import Checkout from './views/checkout';
 import SECRET_KEY from './config.js';
+import { StripeProvider } from 'react-stripe-elements';
+
 
 let jwt = require('jsonwebtoken')
 
@@ -24,7 +26,16 @@ class App extends Component {
       token: '',
       cart: [],
       products: [],
+      total: 0,
     }
+  }
+
+  handleLogout = async(e) => {
+    e.preventDefault();
+
+    this.setState({
+      'logged_in' : false,
+    });
   }
 
   handleLogin = async(e) => {
@@ -53,10 +64,12 @@ class App extends Component {
     if (data.message === 'success') {
       this.setState({
         'logged_in' : true,
-        'admin': true,
         'token': data.token
     });
 
+      if (data.admin == 1) {
+        this.setState({ 'admin' : true });
+      }
       localStorage.setItem('token', data.token);
 
       alert('You are now logged in!')
@@ -131,6 +144,7 @@ class App extends Component {
     }
     // set the cart with updated values
     this.setState({ cart })
+    this.getTotal();
   }
 
   removeItem = product_id => {
@@ -146,48 +160,59 @@ class App extends Component {
 
     // reset the state
     this.setState({ cart });
+    this.getTotal();
   }
 
-  getTotal = price => {
+  getTotal = () => {
 
     let cart = this.state.cart;
 
+    let total = 0;
+
     for (let i in cart) {
-      if (cart[i].price === price) {
-        return i; 
-        break;
-      }
+      total += cart[i].price;
     }
-    this.setState({ cart })
+    this.setState({ total });
   }
 
   render() {
     return (
-      <div className="App">
-        <Header
-        logged_in={this.state.logged_in}
-        />
-        <div className="container">
-          <Switch>
-            <Route exact path='/' render={() => <Commerce products={this.state.products}
-            cart={this.state.cart}
-            addItem={this.addItem}
-            removeItem={this.removeItem}/>} />
-            <Route exact path='/checkout' render={() => <Checkout cart={this.state.cart}
-            removeItem={this.removeItem}/>} />
-            <Route exact path='/admin' render={() => <Admin />} />
-            <Route exact path='/contact' render={() => <Contact />} />
-            <Route exact path='/login' render={() => <Login handleLogin={this.handleLogin} />} />
-            <Route exact path='/register' render={() => <Register handleRegister={this.handleRegister} />} />
-            {
-            this.state.logged_in ?
-            <Route exact path='/data' render={() => <Data />} /> :
-            <p>You're not allowed to access this page, please log in.</p>
-            }
-          </Switch>
+      <StripeProvider apiKey="pk_test_sTltal2Cd2L8A28D2htWtv5w00uLqPReZ0">
+        <div className="App">
+          <Header
+          logged_in={this.state.logged_in}
+          />
+          <div className="container">
+            <Switch>
+              <Route exact path='/' render={() => <Commerce products={this.state.products}
+              cart={this.state.cart}
+              addItem={this.addItem}
+              removeItem={this.removeItem}
+              total={this.state.total}
+              />} />
+
+              <Route exact path='/checkout' render={() => <Checkout  cart={this.state.cart}
+              removeItem={this.removeItem}
+              total={this.state.total}
+              />} />
+
+              { (this.state.admin === true) ?
+                <Route exact path='/admin' render={() => <Admin />} />
+                :
+                <Route exact path='/admin' render={() => <h2 className="center"><b>Sorry, you do not have the priviledges to access this page.</b></h2>} />
+              }
+
+              <Route exact path='/contact' render={() => <Contact />} />
+
+              <Route exact path='/login' render={() => <Login handleLogin={this.handleLogin} />} />
+
+              <Route exact path='/register' render={() => <Register handleRegister={this.handleRegister} />} />
+
+            </Switch>
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+      </StripeProvider>
     );
   }
 }

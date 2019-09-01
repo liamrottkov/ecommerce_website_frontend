@@ -46,7 +46,7 @@ class Contact extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-6 offset-md-3">
-            <h1>Send us a Message</h1>
+            <h1>Send Us A Message</h1>
             <ContactForm savePost={this.savePost} />
           </div> {/* ends col */}
         </div> {/*ends row */}

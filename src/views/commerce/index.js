@@ -22,6 +22,7 @@ class Commerce extends Component {
             <ProductsCart
               cart={this.props.cart}
               removeItem={this.props.removeItem}
+              total={this.props.total}
             />
           </div> {/* ends col 1*/}
         </div> {/*ends row */}

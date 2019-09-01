@@ -34,6 +34,13 @@ function CheckoutTable(props) {
             )
         }
       </tbody>
+
+      <tfoot>
+        <tr>
+          <td colSpan="5"> <b>Total: </b> ${props.total}</td>
+        </tr>
+      </tfoot>
+
     </table>
   );
 }
