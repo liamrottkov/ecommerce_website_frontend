@@ -14,15 +14,29 @@ class Header extends Component {
 
           <NavLink to='/contact' className="navbar-brand">Contact</NavLink>
 
-          <NavLink to='/login' className="navbar-brand">Login</NavLink>
+
+
           {
             !this.props.logged_in &&
               <NavLink to='/register' className="navbar-brand">Register</NavLink>
           }
+
+          {
+            !this.props.logged_in &&
+              <NavLink to='/login' className="navbar-brand">Login</NavLink>
+          }
+
           {
             this.props.logged_in &&
               <NavLink to='/admin' className="navbar-brand">Admin</NavLink>
           }
+
+          {
+            this.props.logged_in &&
+            <NavLink to='/logout' onClick={this.props.handleLogout} className="navbar-brand">Logout</NavLink>
+          }
+
+
         </nav>
       </header>
     );

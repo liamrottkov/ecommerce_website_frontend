@@ -6,8 +6,8 @@ import Footer from './components/footer';
 import Admin from './views/admin';
 import Contact from './views/contact';
 import Commerce from './views/commerce';
-// import Data from './views/data';
 import Login from './views/login';
+import Logout from './views/logout';
 import Register from './views/register';
 import Checkout from './views/checkout';
 import SECRET_KEY from './config.js';
@@ -32,6 +32,10 @@ class App extends Component {
 
   handleLogout = async(e) => {
     e.preventDefault();
+
+    if (!window.confirm('Are you sure you want to logout?')) {
+      return;
+    }
 
     this.setState({
       'logged_in' : false,
@@ -67,7 +71,7 @@ class App extends Component {
         'token': data.token
     });
 
-      if (data.admin == 1) {
+      if (data.admin === 1) {
         this.setState({ 'admin' : true });
       }
       localStorage.setItem('token', data.token);
@@ -123,7 +127,7 @@ class App extends Component {
 
     console.log(data)
 
-    this.setState({ products:data.products })
+    this.setState({ products: data.products })
   }
 
    componentDidMount() {
@@ -197,7 +201,12 @@ class App extends Component {
               />} />
 
               { (this.state.admin === true) ?
-                <Route exact path='/admin' render={() => <Admin />} />
+                <Route exact path='/admin' render={() => <Admin
+                products={this.state.products}
+                saveProduct={this.saveProduct}
+                getProducts={this.getProduct}
+                deleteProduct={this.deleteProduct}
+                />} />
                 :
                 <Route exact path='/admin' render={() => <h2 className="center"><b>Sorry, you do not have the priviledges to access this page.</b></h2>} />
               }
@@ -207,6 +216,12 @@ class App extends Component {
               <Route exact path='/login' render={() => <Login handleLogin={this.handleLogin} />} />
 
               <Route exact path='/register' render={() => <Register handleRegister={this.handleRegister} />} />
+
+              { (this.state.logged_in === true) ?
+                <Route exact path='/logout' render={() => <Logout handleLogout={this.handleLogout} />} />
+                :
+                <Route exact path='/logout' render={() => <h2 className="center"><b>You are logged out!</b></h2>} />
+              }
 
             </Switch>
           </div>

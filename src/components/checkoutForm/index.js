@@ -43,6 +43,9 @@ class CheckoutForm extends React.Component {
     let state = this.state.state
     let country = this.state.country
 
+    if (!window.confirm('Are you sure you want to purchase?')) {
+      return;
+    }
 
     let URL = 'http://localhost:5000/api/payment';
 
@@ -103,7 +106,7 @@ class CheckoutForm extends React.Component {
                 {/* <label><b>Zip Code:</b></label> */}
                 <input value={this.state.country} onChange={(e) => this.setState({ 'country' : e.target.value })} type="text" className="form-control" name="country" placeholder="Country"/>
               </div>
-              <button className="purchase" onClick={() => this.handleSubmit()}>Confirm Purchase</button>
+              <button className="btn btn-primary purchase" onClick={() => this.handleSubmit()}>Confirm Purchase</button>
             </div>
           </div>
         </div>
