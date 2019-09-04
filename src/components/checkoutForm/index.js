@@ -22,7 +22,7 @@ class CheckoutForm extends React.Component {
     let total = this.props.total;
     total *= 100;
     total = Math.floor(total);
-    return total.toFixed(2);
+    return total;
   }
 
   handleSubmit = async(e) => {
