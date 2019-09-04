@@ -193,12 +193,12 @@ class App extends Component {
               cart={this.state.cart}
               addItem={this.addItem}
               removeItem={this.removeItem}
-              total={this.state.total.toFixed(2)}
+              total={this.state.total}
               />} />
 
               <Route exact path='/checkout' render={() => <Checkout  cart={this.state.cart}
               removeItem={this.removeItem}
-              total={this.state.total.toFixed(2)}
+              total={this.state.total}
               />} />
 
               { (this.state.admin === true) ?

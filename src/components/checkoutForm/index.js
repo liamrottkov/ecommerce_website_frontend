@@ -21,7 +21,7 @@ class CheckoutForm extends React.Component {
   convertToPennies = () => {
     let total = this.props.total;
     total *= 100;
-    total = Math.floor(total);
+    total = Math.floor(total).toFixed(2);
     return total;
   }
 
