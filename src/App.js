@@ -48,7 +48,7 @@ class App extends Component {
     let email = e.target.elements.email.value;
     let password = e.target.elements.pass.value;
 
-    const URL = 'http://localhost:5000/authentication/login'
+    const URL = 'https://ecommerce-website-backend.herokuapp.com/authentication/login'
 
     let token = jwt.sign(
       { 'email':email, 'password':password },
@@ -89,7 +89,7 @@ class App extends Component {
     let email = e.target.elements.email.value;
     let password = e.target.elements.pass.value;
 
-    const URL = 'http://localhost:5000/authentication/register'
+    const URL = 'https://ecommerce-website-backend.herokuapp.com/authentication/register'
 
     // encrypt a token with the proper payload info to send to our api
     let token = jwt.sign(
@@ -119,7 +119,7 @@ class App extends Component {
 
   getProduct = async(e) => {
 
-    let URL = 'http://localhost:5000/api/retrieve/products';
+    const URL = 'https://ecommerce-website-backend.herokuapp.com/api/retrieve/products';
 
     let response = await fetch(URL);
 
@@ -174,7 +174,7 @@ class App extends Component {
     let total = 0;
 
     for (let i in cart) {
-      total += cart[i].price;
+      total += cart[i].price.toFixed(2);
     }
     this.setState({ total });
   }
@@ -185,6 +185,7 @@ class App extends Component {
         <div className="App">
           <Header
           logged_in={this.state.logged_in}
+          admin={this.state.admin}
           />
           <div className="container">
             <Switch>
@@ -192,12 +193,12 @@ class App extends Component {
               cart={this.state.cart}
               addItem={this.addItem}
               removeItem={this.removeItem}
-              total={this.state.total}
+              total={this.state.total.toFixed(2)}
               />} />
 
               <Route exact path='/checkout' render={() => <Checkout  cart={this.state.cart}
               removeItem={this.removeItem}
-              total={this.state.total}
+              total={this.state.total.toFixed(2)}
               />} />
 
               { (this.state.admin === true) ?

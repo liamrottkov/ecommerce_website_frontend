@@ -47,7 +47,7 @@ class CheckoutForm extends React.Component {
       return;
     }
 
-    let URL = 'http://localhost:5000/api/payment';
+    let URL = 'https://ecommerce-website-backend.herokuapp.com/api/payment';
 
     let response = await fetch(URL, {
       method: "POST",

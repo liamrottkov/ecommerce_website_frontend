@@ -14,8 +14,6 @@ class Header extends Component {
 
           <NavLink to='/contact' className="navbar-brand">Contact</NavLink>
 
-
-
           {
             !this.props.logged_in &&
               <NavLink to='/register' className="navbar-brand">Register</NavLink>
@@ -27,7 +25,7 @@ class Header extends Component {
           }
 
           {
-            this.props.logged_in &&
+            (this.props.logged_in && this.props.admin) &&
               <NavLink to='/admin' className="navbar-brand">Admin</NavLink>
           }
 

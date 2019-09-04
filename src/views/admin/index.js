@@ -21,7 +21,7 @@ class Admin extends Component {
     let description = e.target.elements.description.value;
     let image_url = e.target.elements.image_url.value;
 
-    let URL = 'http://localhost:5000/api/save';
+    let URL = 'https://ecommerce-website-backend.herokuapp.com/api/save';
 
     let response = await fetch(URL, {
       "method": "POST",
@@ -53,7 +53,7 @@ class Admin extends Component {
     let title = e.target.elements.title.value;
 
 
-    let URL = 'http://localhost:5000/api/retrieve';
+    let URL = 'https://ecommerce-website-backend.herokuapp.com/api/retrieve';
 
     let response = await fetch(URL, {
       "method": "GET",
@@ -79,7 +79,7 @@ class Admin extends Component {
       return;
     }
 
-    let URL = 'http://localhost:5000/api/delete';
+    let URL = 'https://ecommerce-website-backend.herokuapp.com/api/delete';
 
     let response = await fetch(URL, {
       "method": "DELETE",
