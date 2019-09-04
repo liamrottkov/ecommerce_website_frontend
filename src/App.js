@@ -174,7 +174,7 @@ class App extends Component {
     let total = 0;
 
     for (let i in cart) {
-      total += cart[i].price.toFixed(2);
+      total += cart[i].price;
     }
     this.setState({ total });
   }
